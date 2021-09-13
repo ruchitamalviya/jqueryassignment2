@@ -1,54 +1,74 @@
 jQuery(document).ready(function() {
-    'use strict';
+
     jQuery('#btn1').on('click', function(e) {
         e.preventDefault();
-        let passLength = $('select').val(),
-            charset = '',
+        let passLength = jQuery('#passlength').val(),
+            charSet = '',
             randPass = '';
 
         if (jQuery('[name="symbol"]').is(':checked'))
-            charset += '@!~#$%^&*=?:;+*';
+            charSet += '@!~#$%^&*=?:;+*';
 
         if (jQuery('[name="number"]').is(':checked'))
-            charset += '0123456789';
+            charSet += '0123456789';
 
         if (jQuery('[name="lowercase"]').is(':checked'))
-            charset += 'abcdefghijklmnopqrstuvwxyz';
+            charSet += 'abcdefghijklmnopqrstuvwxyz';
 
-        if (jQuery('[name="upperrcase"]').is(':checked'))
-            charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if (jQuery('[name="uppercase"]').is(':checked'))
+            charSet += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
         if (jQuery('[name="simillar"]').is(':checked'))
-            charset += 'iLoO0lAaxX';
+            charSet += 'iLoO0lAaxX';
 
         if (jQuery('[name="ambiguous"]').is(':checked'))
-            charset += '{[]},.:;"-<>/\/()';
+            charSet += '{[]},.:;"-<>/\/()';
 
         for (let i = 0; i < passLength; i++) {
-            let randNum = Math.floor(Math.random() * charset.length);
-            randPass += charset.substring(randNum, randNum + 1);
+            let randNum = Math.floor(Math.random() * charSet.length);
+            randPass += charSet.substring(randNum, randNum + 1);
         }
         jQuery('[name=password]').val(randPass);
     });
+
     jQuery('#btn2').click(function(){
-        jQuery('#text-field').select();
-        document.execCommand('copy');
-
+        var copyvalue= jQuery('#copy_text').val();
+        jQuery('#copy_text').select();
+        document.execCommand('Copy');
+        return false;
      });
+  
+    function onClickCheckBox() {
+        let checked1 = jQuery("#symbol").is(":checked");
+        let checked2 = jQuery("#number").is(":checked");
+        let checked3 = jQuery("#lowercase").is(":checked");
+        let checked4 = jQuery("#uppercase").is(":checked");
 
+        localStorage.setItem("checked1", checked1);
+        localStorage.setItem("checked2", checked2);
+        localStorage.setItem("checked3", checked3);
+        localStorage.setItem("checked4", checked4);
+    }
 
-    /*jQuery('#save').click(function(){
-        var symbol=jQuery("#symbol").val();
-        var number=jQuery("#number").val();
-        var lowercase=jQuery("#lowercase").val();
-        var uppercase=jQuery("#uppercase").val();
-        var simillar=jQuery("#simillar").val();
-        var ambiguous=jQuery("#ambiguous").val();
-        Cookies.set('symbol',symbol);
-        Cookies.set('number',number);
-        Cookies.set('lowercase',lowercase);
-        Cookies.set('uppercase',uppercase);
-        Cookies.set('simillar',simillar);
-        Cookies.set('ambiguous',ambiguous);
-     });*/
+    function onReady() {
+
+        let checked1 = "true" == localStorage.getItem("checked1");
+        let checked2 = "true" == localStorage.getItem("checked2");
+        let checked3 = "true" == localStorage.getItem("checked3");
+        let checked4 = "true" == localStorage.getItem("checked4");
+
+        jQuery("#symbol").prop('checked', checked1);
+        jQuery("#number").prop('checked', checked2);
+        jQuery("#lowercase").prop('checked', checked3);
+        jQuery("#uppercase").prop('checked', checked4);
+
+        jQuery("#symbol").click(onClickCheckBox);
+        jQuery("#number").click(onClickCheckBox);
+        jQuery("#lowercase").click(onClickCheckBox);
+        jQuery("#uppercase").click(onClickCheckBox);
+
+    }
+
+   jQuery(document).ready(onReady);
+
 });

@@ -10,8 +10,8 @@
   <link rel="stylesheet" type="text/css" href="css/style.css"> </head>
 
 <body>
-  <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-  <nav class="navbar navbar-light bg-light mt-3">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-12 py-3">
+  <nav class="navbar mt-3">
     <div class="container-fluid">
       <h5 class="text-uppercase px-2 py-2">Rendom Password Generator</h5> </div>
   </nav>
@@ -20,7 +20,7 @@
     <form method="post">
       <div class="form-group">
         <label class="field">Password Length: </label>
-        <select>
+        <select id="passlength">
           <option value="8">8</option>
           <option value="9">9</option>
           <option value="10">10</option>
@@ -38,42 +38,41 @@
       </div>
       <div class="form-check">
         <label>Includes Symbols: </label>
-        <input type="checkbox" value="" id="symbol" name="symbol"><span>(eg @$#%)</span></div>
+        <input type="checkbox" class="check_field" id="symbol" name="symbol"><span>(eg @$#%)</span></div>
 
       <div class="form-check">
         <label>Includes Numbers: </label>
-        <input type="checkbox" value="" id="number" name="number"><span>(eg 0123456789)</span></div>
+        <input type="checkbox" class="check_field" id="number" name="number"><span>(eg 0123456789)</span></div>
 
       <div class="form-check">
         <label>Includes Lowercase: </label>
-        <input type="checkbox" value="" id="lowercase" name="lowercase"><span>(eg abcdefg)</span></div>
+        <input type="checkbox" class="check_field" id="lowercase" name="lowercase"><span>(eg abcdefg)</span></div>
 
       <div class="form-check">
         <label>Includes Uppercase: </label>
-        <input type="checkbox" value="" id="uppercase" name="uppercase"><span>(eg ABCDEFG)</span></div>
+        <input type="checkbox" class="check_field" id="uppercase" name="uppercase"><span>(eg ABCDEFG)</span></div>
 
       <div class="form-check">
-        <label>Includes Simillar Letter: </label>
-        <input type="checkbox" value="" id="simillar" name="simillar"><span>(eg iIl0oLo)</span></div>
+        <label>Exculde Simillar Letter: </label>
+        <input type="checkbox" class="check_field" id="simillar" name="simillar"><span>(eg iIl0oLo)</span></div>
 
       <div class="form-check">
-        <label>Includes Ambiguous: </label>
-        <input type="checkbox" value="" id="ambiguous" name="ambiguous"><span>(eg []{}()/\><)</span></div>
+        <label>Exculde Ambiguous: </label>
+        <input type="checkbox" class="check_field" id="ambiguous" name="ambiguous"><span>(eg []{}()/\><)</span></div>
 
       <div class="form-check">
-        <label>Save My Prefarance: </label>
+        <label>Save My Preference: </label>
         <input type="checkbox" value="" id="save" name="ambiguous"><span>(save for later use)</span></div>
-        
+
       <button id="btn1">Genarate Password</button>
       <button id="btn2">Copy</button>
       <div class="form-group">
-        <input type="text" class="show_field" name="password" id="text-field" value="" placeholder="Your password will show "> </div>
+        <input type="text" class="show_field" name="password" id="copy_text" value="" placeholder="Your password will show "> </div>
     </form>
   </div>
   <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="js/custom.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
