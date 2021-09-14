@@ -1,4 +1,58 @@
 jQuery(document).ready(function() {
+    let isFirst = localStorage.getItem("isFirst")
+    if (isFirst) {
+        let symbol = localStorage.getItem("symbol");
+        let number = localStorage.getItem("number");
+        let loweCase = localStorage.getItem("loweCase");
+        let upperCase = localStorage.getItem("upperCase");
+        let simillar = localStorage.getItem("simillar");
+        let ambiguous = localStorage.getItem("ambiguous");
+        let save = localStorage.getItem("save");
+
+        if (symbol == 'true') {
+            jQuery("#symbol").attr('checked', true);
+        } else {
+            jQuery("#symbol").attr('checked', false);
+        }
+        if (number == 'true') {
+            jQuery("#number").attr('checked', true);
+        } else {
+            jQuery("#number").attr('checked', false);
+        }
+        if (loweCase == 'true') {
+            jQuery("#lowercase").attr('checked', true);
+        } else {
+            jQuery("#lowercase").attr('checked', false);
+        }
+        if (upperCase == 'true') {
+            jQuery("#uppercase").attr('checked', true);
+        } else {
+            jQuery("#uppercase").attr('checked', false);
+        }
+        if (simillar == 'true') {
+            jQuery("#simillar").attr('checked', true);
+        } else {
+            jQuery("#simillar").attr('checked', false);
+        }
+        if (ambiguous == 'true') {
+            jQuery("#ambiguous").attr('checked', true);
+        } else {
+            jQuery("#ambiguous").attr('checked', false);
+        }
+        if (save == 'true') {
+            jQuery("#save").attr('checked', true);
+        } else {
+            jQuery("#save").attr('checked', false);
+        }
+    } else {
+        jQuery("#symbol").attr('checked', true);
+        jQuery("#number").attr('checked', true);
+        jQuery("#lowercase").attr('checked', true);
+        jQuery("#uppercase").attr('checked', true);
+        jQuery("#simillar").attr('checked', true);
+        localStorage.setItem("isFirst", 1);
+    }
+
 
     jQuery('#btn1').on('click', function(e) {
         e.preventDefault();
@@ -31,44 +85,33 @@ jQuery(document).ready(function() {
         jQuery('[name=password]').val(randPass);
     });
 
-    jQuery('#btn2').click(function(){
-        var copyvalue= jQuery('#copy_text').val();
+   
+    jQuery('#btn2').click(function() {
+        var copyvalue = jQuery('#copy_text').val();
         jQuery('#copy_text').select();
         document.execCommand('Copy');
         return false;
-     });
-  
-    function onClickCheckBox() {
-        let checked1 = jQuery("#symbol").is(":checked");
-        let checked2 = jQuery("#number").is(":checked");
-        let checked3 = jQuery("#lowercase").is(":checked");
-        let checked4 = jQuery("#uppercase").is(":checked");
+    });
 
-        localStorage.setItem("checked1", checked1);
-        localStorage.setItem("checked2", checked2);
-        localStorage.setItem("checked3", checked3);
-        localStorage.setItem("checked4", checked4);
-    }
+   
+    jQuery("#save").change(function() {
+        if (this.checked) {
+            let symbol = jQuery("#symbol").is(":checked");
+            let number = jQuery("#number").is(":checked");
+            let loweCase = jQuery("#lowercase").is(":checked");
+            let upperCase = jQuery("#uppercase").is(":checked");
+            let simillar = jQuery("#simillar").is(":checked");
+            let ambiguous = jQuery("#ambiguous").is(":checked");
+            let save = jQuery("#save").is(":checked");
 
-    function onReady() {
+            localStorage.setItem("symbol", symbol);
+            localStorage.setItem("number", number);
+            localStorage.setItem("loweCase", loweCase);
+            localStorage.setItem("upperCase", upperCase);
+            localStorage.setItem("simillar", simillar);
+            localStorage.setItem("ambiguous", ambiguous);
+            localStorage.setItem("save", save);
 
-        let checked1 = "true" == localStorage.getItem("checked1");
-        let checked2 = "true" == localStorage.getItem("checked2");
-        let checked3 = "true" == localStorage.getItem("checked3");
-        let checked4 = "true" == localStorage.getItem("checked4");
-
-        jQuery("#symbol").prop('checked', checked1);
-        jQuery("#number").prop('checked', checked2);
-        jQuery("#lowercase").prop('checked', checked3);
-        jQuery("#uppercase").prop('checked', checked4);
-
-        jQuery("#symbol").click(onClickCheckBox);
-        jQuery("#number").click(onClickCheckBox);
-        jQuery("#lowercase").click(onClickCheckBox);
-        jQuery("#uppercase").click(onClickCheckBox);
-
-    }
-
-   jQuery(document).ready(onReady);
-
+        }
+    });
 });

@@ -6,9 +6,9 @@
   }
   nav
   {
-    background:#b8c2d1;
+  background:#b8c2d1;
   }
-  
+
   .field
   {
   font-size: 20px;
@@ -23,12 +23,12 @@
   select
   {
   padding: 10px;
-  margin-left: 10px;
+  margin-left: 8px;
   width: 150px;
   border-radius:8px;
   }
   span{
-    padding: 8px;
+  padding: 8px;
   }
   #btn1
   {
@@ -61,7 +61,7 @@
   border: 2px solid black;
   }
 
-@media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 768px) {
     .field
     {
     font-size: 20px;
@@ -70,24 +70,23 @@
     label
     {
     width: 62%;
-    
+
     }
     #btn1
     {
     width: 90%;
     margin-bottom:10px;
-     
+
     }
     #btn2
     {
     width: 90%;
-    
+
     }
     .show_field
     {
-    
+
     width:80%;
-   }
+    }
 
   }
-  
