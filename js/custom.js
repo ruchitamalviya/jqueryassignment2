@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
-    /*let isFirst = localStorage.getItem("isFirst")
-    if (isFirst){
+    let save = localStorage.getItem("save");
+    if (save){
         let symbol = localStorage.getItem("symbol");
         let number = localStorage.getItem("number");
         let loweCase = localStorage.getItem("loweCase");
@@ -44,14 +44,7 @@ jQuery(document).ready(function() {
         } else {
             jQuery("#save").attr('checked', false);
         }
-    }else {
-        jQuery("#symbol").attr('checked', true);
-        jQuery("#number").attr('checked', true);
-        jQuery("#lowercase").attr('checked', true);
-        jQuery("#uppercase").attr('checked', true);
-        jQuery("#simillar").attr('checked', true);
-        localStorage.setItem("isFirst", 1);
-    }*/
+    } 
 
 
     jQuery('#btn1').on('click', function(e) {
@@ -73,10 +66,10 @@ jQuery(document).ready(function() {
             charSet += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
         if (jQuery('[name="simillar"]').is(':checked'))
-            charSet += 'iLoO0lAaxX';
+            charSet += 'iLoO0lAaxX'.replace('iLoO0lAaxX','');
 
         if (jQuery('[name="ambiguous"]').is(':checked'))
-            charSet += '{}[],.:;"-<>/\/()';
+            charSet += '{}[],.:;"-<>/\/()'.replace('{}[],.:;"-<>/\/()','');
 
         for (let i = 0; i < passLength; i++) {
             let randNum = Math.floor(Math.random() * charSet.length);
@@ -103,7 +96,6 @@ jQuery(document).ready(function() {
             let simillar = jQuery("#simillar").is(":checked");
             let ambiguous = jQuery("#ambiguous").is(":checked");
             let save = jQuery("#save").is(":checked");
-
             localStorage.setItem("symbol", symbol);
             localStorage.setItem("number", number);
             localStorage.setItem("loweCase", loweCase);
@@ -112,6 +104,16 @@ jQuery(document).ready(function() {
             localStorage.setItem("ambiguous", ambiguous);
             localStorage.setItem("save", save);
 
-        }
+        } 
+        if (this.checked == false) {
+            localStorage.removeItem("symbol");
+            localStorage.removeItem("number");
+            localStorage.removeItem("loweCase");
+            localStorage.removeItem("upperCase");
+            localStorage.removeItem("simillar");
+            localStorage.removeItem("ambiguous");
+            localStorage.removeItem("save");
+          }
+
     });
 });
