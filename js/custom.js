@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
     let save = localStorage.getItem("save");
-    if (save){
+    if (save) {
         let symbol = localStorage.getItem("symbol");
         let number = localStorage.getItem("number");
         let loweCase = localStorage.getItem("loweCase");
@@ -44,7 +44,7 @@ jQuery(document).ready(function() {
         } else {
             jQuery("#save").attr('checked', false);
         }
-    } 
+    }
 
 
     jQuery('#btn1').on('click', function(e) {
@@ -52,9 +52,9 @@ jQuery(document).ready(function() {
         let passLength = jQuery('#passlength').val(),
             charSet = '',
             randPass = '';
-
+         
         if (jQuery('[name="symbol"]').is(':checked'))
-            charSet += '@!~#$%^&*=?:;+*';
+            charSet += '{}[],.:;"`~ <>/\()@!-#$%^&=?+*';
 
         if (jQuery('[name="number"]').is(':checked'))
             charSet += '0123456789';
@@ -66,19 +66,23 @@ jQuery(document).ready(function() {
             charSet += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
         if (jQuery('[name="simillar"]').is(':checked'))
-            charSet += 'iLoO0lAaxX'.replace('iLoO0lAaxX','');
+            charSet += 'iLoO0lAaxX'.replace('iLoO0lAaxX', '');
 
         if (jQuery('[name="ambiguous"]').is(':checked'))
-            charSet += '{}[],.:;"-<>/\/()'.replace('{}[],.:;"-<>/\/()','');
+            charSet = charSet.substring(17);
+
 
         for (let i = 0; i < passLength; i++) {
             let randNum = Math.floor(Math.random() * charSet.length);
             randPass += charSet.substring(randNum, randNum + 1);
+
         }
+
         jQuery('[name=password]').val(randPass);
+
     });
 
-   
+
     jQuery('#btn2').click(function() {
         var copyvalue = jQuery('#copy_text').val();
         jQuery('#copy_text').select();
@@ -86,7 +90,7 @@ jQuery(document).ready(function() {
         return false;
     });
 
-   
+
     jQuery("#save").change(function() {
         if (this.checked) {
             let symbol = jQuery("#symbol").is(":checked");
@@ -104,7 +108,7 @@ jQuery(document).ready(function() {
             localStorage.setItem("ambiguous", ambiguous);
             localStorage.setItem("save", save);
 
-        } 
+        }
         if (this.checked == false) {
             localStorage.removeItem("symbol");
             localStorage.removeItem("number");
@@ -113,7 +117,7 @@ jQuery(document).ready(function() {
             localStorage.removeItem("simillar");
             localStorage.removeItem("ambiguous");
             localStorage.removeItem("save");
-          }
+        }
 
     });
 });
